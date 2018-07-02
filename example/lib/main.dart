@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:simple_sms/simple_sms.dart';
 
-void main() => runApp(SimpleSmsExample());
+void main() => runApp(SimpleSmsExampleApp());
 
-class SimpleSmsExample extends StatefulWidget {
+class SimpleSmsExampleApp extends StatefulWidget {
   @override
-  _SimpleSmsExampleState createState() => _SimpleSmsExampleState();
+  _SimpleSmsExampleAppState createState() => _SimpleSmsExampleAppState();
 }
 
-class _SimpleSmsExampleState extends State<SimpleSmsExample> {
+class _SimpleSmsExampleAppState extends State<SimpleSmsExampleApp> {
   final contactTextFieldController = TextEditingController();
   final smsTextFieldController = TextEditingController();
   final List<String> contacts = [];
