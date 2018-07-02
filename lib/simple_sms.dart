@@ -19,12 +19,6 @@ class SimpleSms {
        throw 'Address must contain at least one item';
     }
 
-    addresses.forEach((element){
-     if (exp.firstMatch(element) == null){
-       throw 'Addresses contain invalid character';
-     }
-    });
-
     await _channel.invokeMethod(_methodName, [addresses, message]);
   }
 
