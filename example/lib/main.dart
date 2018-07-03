@@ -13,6 +13,7 @@ class _SimpleSmsExampleAppState extends State<SimpleSmsExampleApp> {
   final contactTextFieldController = TextEditingController();
   final smsTextFieldController = TextEditingController();
   final List<String> contacts = [];
+  String recipients;
   final RegExp exp = RegExp(r'([(+]*[0-9]+[()+. -]*)');
   static const double defaultPadding = 8.0;
 
@@ -36,7 +37,7 @@ class _SimpleSmsExampleAppState extends State<SimpleSmsExampleApp> {
                           Flexible(
                             child: TextField(
                               decoration:
-                              InputDecoration(hintText: '+420123456789'),
+                                  InputDecoration(hintText: '+420123456789'),
                               controller: contactTextFieldController,
                             ),
                           ),
@@ -44,16 +45,18 @@ class _SimpleSmsExampleAppState extends State<SimpleSmsExampleApp> {
                             padding: const EdgeInsets.all(defaultPadding),
                             child: RaisedButton(
                               onPressed: () {
-                                if (_validateContact( //whole this onPressed is terrible :/ didnt figure out how to display Snackbar outside of Build method
+                                if (_validateContact(
+                                    //whole this onPressed is terrible :/ didnt figure out how to display Snackbar outside of Build method
                                     contactTextFieldController.text)) {
                                   _addContact(contactTextFieldController.text);
-                                  Scaffold.of(context).showSnackBar(
-                                      SnackBar(content: Text('Contact added'),));
+                                  Scaffold.of(context).showSnackBar(SnackBar(
+                                        content: Text('Contact added'),
+                                      ));
                                 } else {
                                   Scaffold.of(context).showSnackBar(SnackBar(
-                                    content: Text(
-                                        'Contact contains invalid characters'),
-                                  ));
+                                        content: Text(
+                                            'Contact contains invalid characters'),
+                                      ));
                                 }
                               },
                               child: Text('add contact'),
@@ -62,6 +65,20 @@ class _SimpleSmsExampleAppState extends State<SimpleSmsExampleApp> {
                         ],
                       ),
                     ),
+                    contacts.length > 0 ?
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: <Widget>[
+                          Flexible(
+                              child: Text(
+                            'Recipients: $recipients',
+                            overflow: TextOverflow.ellipsis,
+                                maxLines:  10,
+                          )),
+                        ],
+                      ),
+                    ) : Container(),
                     Padding(
                       padding: const EdgeInsets.all(defaultPadding),
                       child: Row(
@@ -106,6 +123,9 @@ class _SimpleSmsExampleAppState extends State<SimpleSmsExampleApp> {
   _addContact(String contact) {
     contacts.add(contact);
     contactTextFieldController.text = '';
+    setState(() {
+      recipients = contacts.join(', ');
+    });
   }
 
   bool _validateContact(String contact) {
