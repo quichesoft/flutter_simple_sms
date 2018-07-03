@@ -1,8 +1,8 @@
 name: simple_sms
 description: Plugin for simple sending sms
 version: 0.0.1
-author:
-homepage:
+author: 'Quichesoft <info@quichesoft.com>'
+homepage: 'https://github.com/quichesoft/flutter_simple_sms'
 
 dependencies:
   flutter:
