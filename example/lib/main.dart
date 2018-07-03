@@ -36,6 +36,7 @@ class _SimpleSmsExampleAppState extends State<SimpleSmsExampleApp> {
                         children: <Widget>[
                           Flexible(
                             child: TextField(
+                              keyboardType: TextInputType.phone,
                               decoration:
                                   InputDecoration(hintText: '+420123456789'),
                               controller: contactTextFieldController,
@@ -72,7 +73,7 @@ class _SimpleSmsExampleAppState extends State<SimpleSmsExampleApp> {
                         children: <Widget>[
                           Flexible(
                               child: Text(
-                            'Recipients: $recipients',
+                            'Recipients: \n $recipients',
                             overflow: TextOverflow.ellipsis,
                                 maxLines:  10,
                           )),
@@ -124,7 +125,7 @@ class _SimpleSmsExampleAppState extends State<SimpleSmsExampleApp> {
     contacts.add(contact);
     contactTextFieldController.text = '';
     setState(() {
-      recipients = contacts.join(', ');
+      recipients = contacts.join(', \n');
     });
   }
 
