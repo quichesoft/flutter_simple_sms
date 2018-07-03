@@ -1,3 +1,3 @@
-## [0.0.1] - TODO: Add release date.
+## [0.0.1] - 03-07-2018.
 
-* TODO: Describe initial release.
+* simple sms url launch with multiple recipients support
